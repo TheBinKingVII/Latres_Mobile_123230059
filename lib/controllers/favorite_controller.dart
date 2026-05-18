@@ -20,7 +20,7 @@ class FavoriteController extends GetxController {
     favoriteFilm.assignAll(items);
   }
 
-  bool isFavorite(String mealId) {
+  bool isFavorite(int mealId) {
     return _favoriteBox.containsKey(mealId);
   }
 
@@ -29,7 +29,7 @@ class FavoriteController extends GetxController {
     _syncFromBox();
   }
 
-  Future<void> removeFavorite(String mealId) async {
+  Future<void> removeFavorite(int mealId) async {
     await _favoriteBox.delete(mealId);
     _syncFromBox();
   }
