@@ -4,7 +4,7 @@ import 'package:latihan_responsi_praktpm/models/film.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static final String _baseUrl = " https://api.tvmaze.com/shows";
+  static final String _baseUrl = "https://api.tvmaze.com/shows";
 
   static Future<List<Film>> getFilmList() async {
     try {
@@ -22,7 +22,7 @@ class ApiService {
     }
   }
 
-  static Future<Film> getFilmDetailById(String id) async {
+  static Future<Film> getFilmDetailById(int id) async {
     try {
       final response = await http.get(Uri.parse("$_baseUrl/$id"));
 

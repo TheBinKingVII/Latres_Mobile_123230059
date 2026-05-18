@@ -16,11 +16,11 @@ class _LoginPageState extends State<LoginPage> {
 
   TextEditingController passwordController = TextEditingController();
 
-  bool isVisible = false;
+  bool obscureText = false;
 
   void _visibleTapped() {
     setState(() {
-      isVisible = !isVisible;
+      obscureText = !obscureText;
     });
   }
 
@@ -62,7 +62,12 @@ class _LoginPageState extends State<LoginPage> {
                 controller: passwordController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.lock),
-
+                  suffixIcon: IconButton(
+                    onPressed: _visibleTapped,
+                    icon: obscureText
+                        ? Icon(Icons.visibility_off)
+                        : Icon(Icons.visibility),
+                  ),
                   hintText: "Password",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),

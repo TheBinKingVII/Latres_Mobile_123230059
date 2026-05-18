@@ -6,10 +6,10 @@ class FilmController extends GetxController {
   var _filmList = [].obs;
   RxBool _isLoading = true.obs;
 
-  List get mealList => _filmList;
+  List get filmList => _filmList;
   RxBool get isLoading => _isLoading;
 
-  set mealList(List<Film> value) {
+  set filmList(List<Film> value) {
     _filmList.value = value;
   }
 
@@ -30,6 +30,19 @@ class FilmController extends GetxController {
       _filmList.value = data;
     } catch (e) {
       print("Error: $e");
+    } finally {
+      _isLoading.value = false;
+    }
+  }
+
+  Future<Film> fetchFilmDetails(int id) async {
+    try {
+      _isLoading.value = true;
+      var data = await ApiService.getFilmDetailById(id);
+      return data;
+    } catch (e) {
+      print("Error: $e");
+      throw Exception('Film detail not found');
     } finally {
       _isLoading.value = false;
     }

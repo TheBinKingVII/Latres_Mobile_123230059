@@ -1,15 +1,24 @@
+import 'package:hive/hive.dart';
+part 'detail_film.g.dart';
 
-
-class Film {
+@HiveType(typeId: 0)
+class DetailFilm extends HiveObject {
+  @HiveField(0)
   int id;
+  @HiveField(1)
   String url;
+  @HiveField(2)
   String name;
+  @HiveField(3)
   List<String> genres;
+  @HiveField(4)
   double rating;
+  @HiveField(5)
   String summary;
+  @HiveField(6)
   String imgUrl;
 
-  Film({
+  DetailFilm({
     required this.id,
     required this.url,
     required this.name,
@@ -19,8 +28,8 @@ class Film {
     required this.imgUrl,
   });
 
-  factory Film.fromJson(Map<String, dynamic> json) {
-    return Film(
+  factory DetailFilm.fromJson(Map<String, dynamic> json) {
+    return DetailFilm(
       id: json['id'],
       url: json['url'] ?? '',
       name: json['name'] ?? '',
