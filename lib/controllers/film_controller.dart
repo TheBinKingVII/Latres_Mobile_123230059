@@ -37,7 +37,6 @@ class FilmController extends GetxController {
 
   Future<Film> fetchFilmDetails(int id) async {
     try {
-      _isLoading.value = true;
       var data = await ApiService.getFilmDetailById(id);
       return data;
     } catch (e) {

@@ -16,14 +16,12 @@ class _DetailPageState extends State<DetailPage> {
   late Future<Film> futureFilm;
   final FavoriteController controllerFav = Get.find<FavoriteController>();
   final FilmController controller = Get.find<FilmController>();
-  final data = Get.arguments;
-
-  get filmId => data['id'];
+  late final int filmId;
 
   @override
   void initState() {
     super.initState();
-    print("$filmId");
+    filmId = Get.arguments['id'] as int;
     futureFilm = controller.fetchFilmDetails(filmId);
   }
 
@@ -307,9 +305,6 @@ class _DetailPageState extends State<DetailPage> {
 
                           const SizedBox(width: 12),
 
-                          // ── Favorite icon button ──────────────────────────
-                          // FIX: snackbar dipanggil di _toggleFavorite (di luar Obx)
-                          // agar tidak menyebabkan setState during build
                           Obx(() {
                             final isFavorite = controllerFav.favoriteFilm.any(
                               (item) => item.id == film.id,
